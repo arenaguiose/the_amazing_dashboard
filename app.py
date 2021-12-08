@@ -107,7 +107,7 @@ with col5:
     user = st.text_input('Trouver un utilisateur :', '25402601')
     url = "http://www.airbnb.com/users/show/"+user
     if st.button('Go to Airbnb'):
-      webbrowser.open_new_tab(url)
+      st.markdown(url, unsafe_allow_html=True)   
      
  
 
