@@ -1,58 +1,20 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
-# Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
-)
-
-# Add a slider to the sidebar:
-add_slider = st.sidebar.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
-)
+import plotly.express as px
+import geopandas as gpd
 
 
-st.write('Hello World !')
+df = pd.read_csv('data/listings.csv')
+nb = gpd.read_file('data/neighbourhoods.geojson')
+
+df = df[df['availability_365'] > 0]
+df = df[df['room_type'] != "Hotel room"]
 
 
-st.write("Here's our first attempt at using data to create a table:")
-st.write(pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-}))
+mb_token = "pk.eyJ1IjoiYXJlbmFnc2UiLCJhIjoiY2t3d3hrMjl6MDg4dDMxcjBrbHBycHFqYSJ9.Izk3V1cMsjb96YruvGeMzg"
+px.set_mapbox_access_token(mb_token)
 
-dataframe = pd.DataFrame(
-    np.random.randn(10, 20),
-    columns=('col %d' % i for i in range(20)))
-
-st.dataframe(dataframe.style.highlight_max(axis=0))
-
-
-dataframe = pd.DataFrame(
-    np.random.randn(10, 20),
-    columns=('col %d' % i for i in range(20)))
-st.table(dataframe)
-
-chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
-
-st.line_chart(chart_data)
-
-
-
-map_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['lat', 'lon'])
-
-st.map(map_data)
-
-
-map_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['lat', 'lon'])
-
-st.map(map_data)
+fig = px.scatter_mapbox(df, lat="latitude", lon="longitude",  hover_data=["price", "availability_365"],   color="room_type", 
+                  color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+fig.show()
