@@ -27,7 +27,7 @@ with st.container():
 
     px.set_mapbox_access_token(mb_token)
 
-    fig = px.scatter_mapbox(df, lat="latitude", lon="longitude",  hover_data=["price", "availability_365"],   color="room_type",  size_max=15, zoom=10) #color_continuous_scale=px.colors.cyclical.IceFire,
+    fig = px.scatter_mapbox(df, lat="latitude", lon="longitude",  hover_data=["price", "availability_365"],   color="room_type",  size_max=15, zoom=10, width=800, height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
 
     st.plotly_chart(fig)
 
