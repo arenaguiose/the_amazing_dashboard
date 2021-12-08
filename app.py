@@ -28,16 +28,22 @@ with col1:
          ['Entire home/apt', 'Private room', 'Shared room'])
 #st.write('You selected:', options_type)
 
+
 with col2:
     values_price = st.slider(
      'Prix à la nuitée',
      float(df.price.min()), float(df.price.max()), (float(df.price.min()), float(df.price.max())))
 #st.write('Values:', values_price)
 
-with st.container():
-    st.write("This is inside the container")
+df_filter = df
+for i in options_type:
+    df_filter = df_filter[df_filter['room_type'] == i]
 
-    
+df_filter = df_filter[df_filter['price'] >= values_price[0]]
+df_filter = df_filter[df_filter['price'] <= values_price[1]]
+
+
+with st.container():
 
     px.set_mapbox_access_token(mb_token)
 
