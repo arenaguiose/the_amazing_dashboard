@@ -29,7 +29,7 @@ with st.container():
 
     fig = px.scatter_mapbox(df, lat="latitude", lon="longitude",  hover_data=["price", "availability_365"],   color="room_type",  size_max=15, zoom=10, width=800, height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 col1, col2 = st.columns(2)
