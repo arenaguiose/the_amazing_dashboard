@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import geopandas as gpd
+import webbrowser
 
 
 
@@ -99,6 +100,24 @@ with col4:
 
     st.plotly_chart(fig3, use_container_width=True)
 
+
+col5, col6 = st.columns(2)
+
+with col5:
+    user = st.text_input('Trouver un utilisateur :', '25402601')
+    url = "http://www.airbnb.com/users/show/"+user
+    if st.button('Go to Airbnb'):
+      webbrowser.open_new_tab(url)
+     
+ 
+
+with col6:
+    bien = st.text_input('Trouver un bien :', '8289748')
+    url2 = "http://www.airbnb.com/rooms/"+bien
+    if st.button2('Go to Airbnb'):
+      webbrowser.open_new_tab(url2)
+     
+    
 
 
 # pourcentage de proprios ayant 1 , 2 , 3 propriétés / top 5 des proprios 
