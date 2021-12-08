@@ -46,7 +46,16 @@ with st.container():
 
     px.set_mapbox_access_token(mb_token)
 
-    fig = px.scatter_mapbox(df_filter, lat="latitude", lon="longitude",  hover_data=["price", "availability_365", "id"],   color="room_type",  size_max=15, zoom=10, width=800, height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
+    fig = px.scatter_mapbox(
+        df_filter, 
+        lat="latitude", 
+        lon="longitude",  
+        hover_data=["price", "availability_365", "id"],   
+        color="room_type",  
+        size_max=15, 
+        zoom=10, 
+        width=800, 
+        height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -72,14 +81,23 @@ with col3:
              orientation='h',
              hover_data=['host_id'],
              color='Nombre de propriétés')
+
     fig2.update_yaxes(autorange='reversed')
+
     st.plotly_chart(fig2, use_container_width=True)
 
 with col4:
     st.header("Taux de disponibilité par bien")
     proportion_dispo = df_filter[['availability_365']]/3.65
-    fig3 = px.histogram(proportion_dispo, x='availability_365', nbins=13, title='Pourcentage de mise en disponibilité des biens',color='availability_365')
+    fig3 = px.histogram(
+        proportion_dispo, 
+        x='availability_365', 
+        nbins=13, 
+        title='Pourcentage de mise en disponibilité des biens',
+        color='blue')
+
     fig3.update_layout(bargap=0.1)
+
     st.plotly_chart(fig3, use_container_width=True)
 
 
