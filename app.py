@@ -93,8 +93,7 @@ with col4:
         proportion_dispo, 
         x='availability_365', 
         nbins=13, 
-        title='Pourcentage de mise en disponibilité des biens',
-        color='blue')
+        title='Pourcentage de mise en disponibilité des biens')
 
     fig3.update_layout(bargap=0.1)
 
