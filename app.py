@@ -26,7 +26,7 @@ with col1:
     options_type = st.multiselect(
          'Type de logement',
          ['Entire home/apt', 'Private room', 'Shared room'])
-#st.write('You selected:', options_type)
+st.write('You selected:', options_type)
 
 
 with col2:
