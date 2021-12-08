@@ -115,7 +115,8 @@ with col6:
     bien = st.text_input('Trouver un bien :', '8289748')
     url2 = "http://www.airbnb.com/rooms/"+bien
     if st.button2('Go to Airbnb'):
-      webbrowser.open_new_tab(url2)
+      #webbrowser.open_new_tab(url2)
+      st.markdown(url2, unsafe_allow_html=True)
      
     
 
