@@ -58,7 +58,7 @@ col3, col4 = st.columns(2)
 
 with col3:
     st.header("Top 10 des propriétaires")
-    # You can call any Streamlit command, including custom components:
+    # 
     nb_proprietes_pp = df_filter[['host_id']].value_counts().head(10)
     nb_proprietes_pp = nb_proprietes_pp.to_frame().reset_index().rename(columns= {0: 'Nombre de propriétés'})
     nb_proprietes_pp.index.name = 'index'
@@ -70,14 +70,15 @@ with col3:
              text='Nombre de propriétés', \
              title='TOP 10 : Propriétaires qui ont le plus de biens à louer', \
              orientation='h',
-             hover_data=['host_id'])
+             hover_data=['host_id'],
+             color='Nombre de propriétés')
     fig2.update_yaxes(autorange='reversed')
     st.plotly_chart(fig2, use_container_width=True)
 
 with col4:
     st.header("Taux de disponibilité par bien")
     proportion_dispo = df_filter[['availability_365']]/3.65
-    fig3 = px.histogram(proportion_dispo, x='availability_365', nbins=13)
+    fig3 = px.histogram(proportion_dispo, x='availability_365', nbins=13, title='Pourcentage de mise en disponibilité des biens',color='availability_365')
     fig3.update_layout(bargap=0.1)
     st.plotly_chart(fig3, use_container_width=True)
 
