@@ -26,7 +26,7 @@ with col1:
     options_type = st.multiselect(
          'Type de logement',
          ['Entire home/apt', 'Private room', 'Shared room'])
-st.write('You selected:', options_type)
+#st.write('You selected:', options_type)
 
 
 with col2:
@@ -46,9 +46,12 @@ with st.container():
 
     px.set_mapbox_access_token(mb_token)
 
-    fig = px.scatter_mapbox(df_filter, lat="latitude", lon="longitude",  hover_data=["price", "availability_365"],   color="room_type",  size_max=15, zoom=10, width=800, height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
+    fig = px.scatter_mapbox(df_filter, lat="latitude", lon="longitude",  hover_data=["price", "availability_365", "id"],   color="room_type",  size_max=15, zoom=10, width=800, height=500) #color_continuous_scale=px.colors.cyclical.IceFire,
 
     st.plotly_chart(fig, use_container_width=True)
+
+
+
 
 
 col3, col4 = st.columns(2)
@@ -70,3 +73,4 @@ with col4:
 # revenus max
 #chambre privée ou logement entier ?
 #revenus par mois
+# liens vers annonces
