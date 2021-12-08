@@ -106,7 +106,7 @@ col5, col6 = st.columns(2)
 with col5:
     user = st.text_input('Trouver un utilisateur :', '25402601')
     url = "http://www.airbnb.com/users/show/"+user
-    if st.button('Go to Airbnb'):
+    if st.button('Go to User'):
       st.markdown(url, unsafe_allow_html=True)   
      
  
