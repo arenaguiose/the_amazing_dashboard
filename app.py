@@ -36,9 +36,8 @@ with col2:
 #st.write('Values:', values_price)
 
 df_filter = df
-for i in options_type:
-    df_filter = df_filter[df_filter['room_type'] == i]
 
+df_filter = df_filter[df_filter['room_type'].isin(options_type)]
 df_filter = df_filter[df_filter['price'] >= values_price[0]]
 df_filter = df_filter[df_filter['price'] <= values_price[1]]
 
