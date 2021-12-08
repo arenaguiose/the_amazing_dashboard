@@ -57,9 +57,22 @@ with st.container():
 col3, col4 = st.columns(2)
 
 with col3:
-    st.header("A cat")
+    st.header("Top 10 des propriétaires")
     # You can call any Streamlit command, including custom components:
-    st.bar_chart(np.random.randn(50, 3))
+    nb_proprietes_pp = df[['host_id']].value_counts().head(10)
+    nb_proprietes_pp = nb_proprietes_pp.to_frame().reset_index().rename(columns= {0: 'Nombre de propriétés'})
+    nb_proprietes_pp.index.name = 'index'
+    nb_proprietes_pp['host_id']= nb_proprietes_pp['host_id'].map(str)
+
+    fig2 = px.bar(nb_proprietes_pp[:10], \
+             x='Nombre de propriétés', \
+             y=nb_proprietes_pp.index, \
+             text='Nombre de propriétés', \
+             title='TOP 10 : Propriétaires qui ont le plus de biens à louer', \
+             orientation='h',
+             hover_data=['host_id'])
+    fig2.update_yaxes(autorange='reversed')
+    st.plotly_chart(fig2, use_container_width=True)
 
 with col4:
     st.header("A dog")
@@ -68,9 +81,12 @@ with col4:
 
 
 
+# pourcentage de proprios ayant 1 , 2 , 3 propriétés / top 5 des proprios 
+# taux de disponibilité < > moitié de l'année
+
+# revenus max #revenus par mois
 # quartiers les plus demandés / chers / proposés
-# top 5 des proprios / pourcentage de proprios ayant 1 , 2 , 3 propriétés
-# revenus max
-#chambre privée ou logement entier ?
-#revenus par mois
+
+
+# chambre privée ou logement entier ?
 # liens vers annonces
