@@ -20,6 +20,20 @@ mb_token = "pk.eyJ1IjoiYXJlbmFnc2UiLCJhIjoiY2t3d3hrMjl6MDg4dDMxcjBrbHBycHFqYSJ9.
 st.set_page_config(layout="wide")
 st.title("Airbnbs à Bordeaux")
 
+col1, col2 = st.columns(2)
+
+with col1:
+    options_type = st.multiselect(
+         'Type de logement',
+         ['Entire home/apt', 'Private room', 'Shared room'])
+#st.write('You selected:', options_type)
+
+with col2:
+    values_price = st.slider(
+     'Prix à la nuitée',
+     df.price.min(), df.price.max(), (df.price.min(), df.price.max()))
+#st.write('Values:', values_price)
+
 with st.container():
     st.write("This is inside the container")
 
@@ -32,14 +46,22 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True)
 
 
-col1, col2 = st.columns(2)
+col3, col4 = st.columns(2)
 
-with col1:
+with col3:
     st.header("A cat")
     # You can call any Streamlit command, including custom components:
     st.bar_chart(np.random.randn(50, 3))
 
-with col2:
+with col4:
     st.header("A dog")
     st.image("https://static.streamlit.io/examples/dog.jpg")
 
+
+
+
+# quartiers les plus demandés / chers / proposés
+# top 5 des proprios / pourcentage de proprios ayant 1 , 2 , 3 propriétés
+# revenus max
+#chambre privée ou logement entier ?
+#revenus par mois
