@@ -31,7 +31,7 @@ with col1:
 with col2:
     values_price = st.slider(
      'Prix à la nuitée',
-     df.price.min(), df.price.max(), (df.price.min(), df.price.max()))
+     float(df.price.min()), float(df.price.max()), (float(df.price.min()), float(df.price.max())))
 #st.write('Values:', values_price)
 
 with st.container():
